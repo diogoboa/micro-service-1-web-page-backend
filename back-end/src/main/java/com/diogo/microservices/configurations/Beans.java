@@ -1,4 +1,4 @@
-package com.diogo.microservices.services.configuration;
+package com.diogo.microservices.configurations;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
