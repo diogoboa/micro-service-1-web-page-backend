@@ -1,8 +1,90 @@
-
-
 <div class="container mt-5">
   <h1>Bem vindo!</h1>
-  <div class="row">
-    <div class="col-md-6">
-      Este é um exemplo de aplicação Angular 2 que consome microserviços RESTful.
+  <p>Este é um exemplo de aplicação Angular 2 que consome microserviços RESTful.</p>
+  
+  <div class="row p-0 m-0">
+    <div class="col-md-3">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Usuário</mat-label>
+        <input  [(ngModel)]="login" matInput placeholder="Digite seu usuário">
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-3">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Senha</mat-label>
+        <input  [(ngModel)]="senha" matInput type="password" placeholder="Digite sua senha">
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-2" >
+      <button mat-button (click)="obterToken()">Obter Token</button>    
+    </div>
+
+    <div class="col-md-2">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Token</mat-label>
+        <input matInput [value]="token" readonly>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class=" py-3">
+    <div class="accordion" id="accordionExample" >
+        <!-- Acordeão 1 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              Enviar imagem
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <div class="row p-0 m-0">
+                <div class="col-md-5">
+                  <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Chave</mat-label>
+                    <input matInput placeholder="Digite a chave">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-5">
+                  <input type="file" (change)="onFileSelected($event)" accept="image/*">
+                </div>
+                <div class="col-2">
+                  <button mat-button (click)="enviar()">Enviar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Acordeão 2 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Receber imagem
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <div class="row p-0 m-0">
+                <div class="col-md-3">
+                  <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Chave</mat-label>
+                    <input matInput placeholder="Digite a chave">
+                  </mat-form-field>
+                  <button mat-button (click)="buscar()">Buscar</button>
+                </div>
+                <div class="col-md-6">
+                  <img *ngIf="base64ImagemBuscada" [src]="base64ImagemBuscada" alt="Imagem Base64" style="max-width: 100%;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+  
 </div>

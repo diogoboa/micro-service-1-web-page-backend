@@ -1,0 +1,16 @@
+
+
+nomeDoHost : ${SERVER_NAME:localhost}
+portaDoHost : ${SERVER_PORT:28001}
+
+
+urlLogin : ${URL_LOGIN_POST:http://localhost:29001/api/login}
+
+server:
+  port: ${SERVER_PORT:28001}
+  address: 0.0.0.0
+  tomcat:
+    max-threads: 200
+
+
+
