@@ -4,6 +4,7 @@ import { LoginService } from '../../services/login.service';
 import { ImagemService } from '../../services/imagem.service';
 import { AlertUtilService } from '../../util/alert-util.service';
 import { FormsModule } from '@angular/forms';
+import { error } from 'node:console';
 
 
 @Component({
@@ -21,6 +22,10 @@ export class IndexComponent {
   base64ImageSelecionada: string | ArrayBuffer | null = null;
   base64ImagemBuscada: string | ArrayBuffer | null = null;
 
+
+  chaveParaEnvio: string = '';
+  chaveParaBusca: string = '';
+
   constructor(
     private loginService: LoginService,
     private imagemService: ImagemService,
@@ -29,16 +34,20 @@ export class IndexComponent {
 
   obterToken() {
     const dados = {
-      login: 'this.login,',
-      senha: 'this.senha'
+      login: this.login,
+      senha: this.senha
     };
     this.loginService.obterToken(dados).subscribe({
-      next: token => {
-        this.token = token;
-        console.log('Token obtido:', token);
+      next: (respostaToken : any) => {
+        console.log(respostaToken);
+        this.token = respostaToken.token;
+        console.log('Token obtido:', respostaToken.token);
+        sessionStorage.setItem('token', this.token);
       },
-      error: err => {
+      error: (err) => {
+        console.log(err);
         this.alertUtilService.popupError(err.error.message || 'Erro ao obter token');
+        this.token = '';
       }
     });
   }
@@ -57,9 +66,10 @@ export class IndexComponent {
   enviar() {
     if (this.base64ImageSelecionada) {
       let dados = {
-        chave: 'chave', // Substitua pela chave real
-        imagem: this.base64ImageSelecionada
+        chave: this.chaveParaEnvio,
+        base64Img: this.base64ImageSelecionada
       };
+      console.log(dados);
       this.imagemService.enviarImagem(dados).subscribe({
         next: (resposta) => {
           console.log('Imagem enviada:', resposta);

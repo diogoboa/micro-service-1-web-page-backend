@@ -26,9 +26,8 @@ public class EfetuarLoginImpl implements EfetuarLogin {
 
 
         String loginUrl = urlLogin;
+        return restTemplate.postForObject(loginUrl, command, EfetuarLoginDeUsuarioCommandOut.class);
 
-        EfetuarLoginDeUsuarioCommandOut retorno = restTemplate.postForObject(loginUrl, command, EfetuarLoginDeUsuarioCommandOut.class);
-        return retorno;
 
 
     }

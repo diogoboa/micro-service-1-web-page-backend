@@ -1,5 +1,4 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
-import { error } from 'console';
 import { catchError, throwError } from 'rxjs';
 
 export const interceptador: HttpInterceptorFn = (req, next) => {
@@ -30,6 +29,8 @@ export const interceptador: HttpInterceptorFn = (req, next) => {
 
           case 500:
             console.error('>>>>>>>>>>>>>>>', err);
+            console.log('AAAA');
+            console.log(authReq);
               const customError = new HttpErrorResponse({
                 error: { message: 'Erro ao se comunicar com o servidor, verifique a conexão e tente novamente mais tarde' },
                 status: 500,
@@ -51,7 +52,6 @@ export const interceptador: HttpInterceptorFn = (req, next) => {
         console.error('An error occurred:', err);
       }
 
-      // Re-throw the error to propagate it further
       return throwError(() => err);
     })
   );

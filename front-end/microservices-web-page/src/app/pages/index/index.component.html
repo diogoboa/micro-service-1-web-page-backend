@@ -18,10 +18,12 @@
     </div>
 
     <div class="col-md-2" >
-      <button mat-button (click)="obterToken()">Obter Token</button>    
+      <button mat-button (click)="obterToken()">
+        Obter Token 
+      </button>    
     </div>
 
-    <div class="col-md-2">
+    <div class="col-md-4">
       <mat-form-field appearance="fill" class="w-100">
         <mat-label>Token</mat-label>
         <input matInput [value]="token" readonly>
@@ -44,7 +46,7 @@
                 <div class="col-md-5">
                   <mat-form-field appearance="fill" class="w-100">
                     <mat-label>Chave</mat-label>
-                    <input matInput placeholder="Digite a chave">
+                    <input [(ngModel)]="chaveParaEnvio" matInput placeholder="Digite a chave">
                   </mat-form-field>
                 </div>
                 <div class="col-md-5">
